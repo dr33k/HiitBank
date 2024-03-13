@@ -1,6 +1,6 @@
 import hashlib
-from time import time
 import random
+from db import customer_db
 class Account:
 
     def __init__(self, fname=None, lname=None, email=None, passcode=None, pin=None, bvn=None):
@@ -89,11 +89,43 @@ class Account:
 
     def withdraw(self, amount: float) -> float:
         assert type(amount) == float, "Amount to withdraw must be a number"
-        assert amount > 0, "Amount to withdraw must be a positive number"
-        assert amount < self.__balance, "Insufficient funds"
+        assert amount > 0, "Amount to must be a positive number"
+        assert amount <= self.__balance, "Insufficient funds"
 
         self.__balance -= amount
+
+        print(f"""
+        Debit:
+        Withdrawn N{amount} successfully!
+        New Balance: N{self.__balance}
+""")
         return self.__balance
+
+
+    def deposit(self, amount:float)-> float:
+        assert type(amount) == float, "Amount to be deposited must be a number"
+        assert amount > 0, "Amount to deposti must be positive"
+
+        self.__balance += amount
+
+        print(f"""
+        Credit:
+        Deposited N{amount} successfully!
+        New Balance: N{self.__balance}
+""")
+        return self.__balance
+
+    def transfer(self, amount:float, acc_no:str):
+        beneficiary:Account = customer_db.get(acc_no, None)
+        assert beneficiary is not None, "404 User does not exist"
+
+        self.withdraw(amount)
+        beneficiary.deposit(amount)
+        return self.__balance
+
+
+
+
 
 
 

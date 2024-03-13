@@ -1,6 +1,7 @@
-def func(name="Anonymous", age=200):
-    print("Name:", name)
-    print("Age:", age)
+maps = {
+    "a": 1,
+    "b":2,
+    "c":3
+}
 
-
-func(age=50, name="Michael")
+print(maps.get("d", None))
