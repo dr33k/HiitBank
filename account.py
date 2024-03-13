@@ -1,9 +1,9 @@
-import _md5
+import hashlib
 from time import time
 import random
 class Account:
 
-    def __init__(self, fname, lname, email, passcode, pin, bvn):
+    def __init__(self, fname=None, lname=None, email=None, passcode=None, pin=None, bvn=None):
         self.__fname = fname
         self.__lname = lname
         self.__phone_no = None
@@ -13,7 +13,7 @@ class Account:
         self.__address:str = None
 
         if bvn == None:
-            self.bvn = str(random.randint(10000000000, 99999999999))
+            self.__bvn = str(random.randint(10000000000, 99999999999))
         else:
             self.__bvn = bvn
 
@@ -58,7 +58,7 @@ class Account:
     def set_passcode(self, new_passcode: str):
         assert type(new_passcode) == str, "New passcode provided is not a string value"
 
-        self.__passcode = _md5.md5(new_passcode)
+        self.__passcode = hashlib.md5(new_passcode.encode('utf-8')).hexdigest()
 
     def get_address(self):
         return self.__address

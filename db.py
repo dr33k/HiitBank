@@ -1,6 +1,6 @@
 from account import Account
 
-db:dict = dict()
+customer_db:dict = dict()
 
 account1 = Account(fname="John", lname="Doe", email="john.doe@gmail.com",
                    passcode="12345", pin="1234")
@@ -12,5 +12,5 @@ account2 = Account(fname="Jane", lname="Smith", email="jane.smith@gmail.com",
 account2.set_address("503 Cover Drive, Quahog")
 account2.set_phone_no("09010000000")
 
-db[account1.get_account_no()] = account1
-db[account2.get_account_no()] = account2
+customer_db[account1.get_account_no()] = account1
+customer_db[account2.get_account_no()] = account2
