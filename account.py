@@ -134,7 +134,7 @@ class Account:
 
     def deposit(self, amount:float)-> float:
         assert type(amount) == float, "Amount to be deposited must be a number"
-        assert amount > 0, "Amount to deposti must be positive"
+        assert amount > 0, "Amount to deposit must be positive"
 
         self.__balance += amount
 

@@ -9,6 +9,14 @@ def register():
         try:
             print("REGISTRATION\n\n")
 
+            response = input('''
+            Hello, you are about to register for a Hiit bank Account
+            Enter y to continue or q to quit
+            ''')
+
+            assert response == 'y' or response == 'q', 'Invalid input'
+            if response == 'q': return
+
             acc = Account()
             bvn_response = input("Please enter your BVN, or leave blank if you do not have one")
 
@@ -41,7 +49,7 @@ def register():
             print(f"Other Exception: {ex}")
 
 
-def login():
+def login() -> Account:
     while True:
         try:
             email = input("Email address: ")
@@ -60,9 +68,47 @@ def login():
             assert passcode == user_account.get_passcode(), "Invalid passcode provided"
 
             print("LOGIN SUCCESSFUL!")
-
+            return user_account
 
         except AssertionError as e:
             print("Assertion Error: " + str(e))
         except Exception as e:
             print("Exception: " + str(e))
+
+
+def deposit(user: Account):
+    while True:
+        try:
+            response = input('''
+            
+            How much would you like to deposit: 
+            Enter q to quit
+            ''')
+
+            if response == 'q' : return
+
+            assert response.isnumeric(), "Invalid input only numbers allowed"
+
+            amount = float(response)
+
+            user.deposit(amount)
+
+            return
+
+        except AssertionError as e:
+            print('Assertion Error: '+ str(e))
+        except Exception as e:
+            print('Exception: ' + str(e))
+
+def balance(user: Account):
+    print(f'''
+    Balance: N{user.get_balance()}
+    ''')
+def account_no(user: Account):
+    print(f'''
+    Account No: {user.get_account_no()}
+    ''')
+def bvn(user: Account):
+    print(f'''
+    BVN: {user.get_bvn()}
+    ''')
