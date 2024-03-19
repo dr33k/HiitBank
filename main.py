@@ -28,7 +28,7 @@ while True:
             if response == '1':
                 deposit(user)
             elif response == '2':
-                pass
+                withdraw(user)
             elif response == '3':
                 pass
             elif response == '4':

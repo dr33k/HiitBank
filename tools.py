@@ -100,6 +100,25 @@ def deposit(user: Account):
         except Exception as e:
             print('Exception: ' + str(e))
 
+def withdraw(user: Account):
+    while True:
+        try:
+            response = input('''
+
+            How much would you like to withdraw: 
+            Enter q to quit
+            ''')
+            if response == 'q': return
+            assert response.isnumeric(), "Invalid input only numbers allowed"
+            amount = float(response)
+            user.withdraw(amount)
+            return
+
+        except AssertionError as e:
+            print('Assertion Error: ' + str(e))
+        except Exception as e:
+            print('Exception: ' + str(e))
+
 def balance(user: Account):
     print(f'''
     Balance: N{user.get_balance()}
