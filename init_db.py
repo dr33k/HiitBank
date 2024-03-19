@@ -13,5 +13,8 @@ account2.set_address("503 Cover Drive, Quahog")
 account2.set_phone_no("-09010000000")
 account2.deposit(10000.0)
 
+print(f'{account1.get_fname()} :  {account1.get_account_no()}')
+print(f'{account2.get_fname()} :  {account2.get_account_no()}')
+
 customer_db[account1.get_account_no()] = account1
 customer_db[account2.get_account_no()] = account2

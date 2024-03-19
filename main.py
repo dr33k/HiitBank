@@ -30,7 +30,7 @@ while True:
             elif response == '2':
                 withdraw(user)
             elif response == '3':
-                pass
+                transfer(user)
             elif response == '4':
                 balance(user)
             elif response == '5':
