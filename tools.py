@@ -130,8 +130,8 @@ def transfer(user: Account):
             assert response == 'y' or response == 'q', 'Invalid input'
             if response == 'q': return
 
-            user_accounts = []
-            while len(user_accounts) == 0:
+            user_account = None
+            while user_account is None:
                 beneficiary_acc_no = input('''
                 Enter beneficiary account number
                 ''')
@@ -144,12 +144,12 @@ def transfer(user: Account):
                     print('Cannot initiate transfer to your own account')
                     continue
 
-                user_accounts = [account for account in customer_db.values() if account.get_account_no() == beneficiary_acc_no]
+                user_account = customer_db.get(beneficiary_acc_no, None)
 
-                if len(user_accounts) == 0:
+                if user_account is None:
                     print('User with this account number not found')
 
-            beneficiary = user_accounts[0]
+            beneficiary = user_account
             print(f'''
             Transfer of funds to {beneficiary.get_fname()} {beneficiary.get_lname()}
             ''')
