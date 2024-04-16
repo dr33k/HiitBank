@@ -6,9 +6,8 @@ A bank account simulation developed to teach students of the Python course at Hi
 
 ### Run:
 
-python main.py
+    python main.py
 
 or
 
-py main.py
-
+    py main.py
